@@ -57,7 +57,7 @@ const FORM_VALIDATION = Yup.object().shape({
 
 const App = () => {
   const classes = useStyles();
-
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -71,8 +71,9 @@ const App = () => {
                 ...INITIAL_FORM_STATE,
               }}
               validationSchema={FORM_VALIDATION}
-              onSubmit={(values) => {
-                console.log(values);
+              onSubmit={async (values) => {
+                await sleep(500);
+                alert(JSON.stringify(values, null, 2));
               }}
             >
               <Form>
